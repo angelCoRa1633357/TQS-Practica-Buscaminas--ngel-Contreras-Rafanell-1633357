@@ -1,5 +1,6 @@
 package application;
-	
+
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			Controlador c = new Controlador();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
