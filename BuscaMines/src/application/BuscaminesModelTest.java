@@ -76,7 +76,49 @@ class BuscaminesModelTest {
 
 	@Test
 	void testInicialitzaMatvalors() {
-		fail("Not yet implemented");
+		TaulerDisponibilitat MockDips = new MockTaulerDisp();
+		TaulerValors MockVals =  new MockTaulerVals();
+		BuscaminesModel m = new BuscaminesModel(4,3,2,MockVals,MockDips);
+		//no hi ha asserts ja que son de per contracte.
+		// la i no pot ser mes gran que l'amplada ni inferior a 0, i la j no pot ser mes gran que la llargada ni inferior a 0
+		//  i valor frontera -1,0 amplada-1 i amplada , valors limit -2, 1, amplada-2 i amplada+1
+		// j valor frontera -1, 0, llargada-1 i llargada, valor limit -2,1, llargada-2 i llargada+1
+		
+		//limits
+		m.inicialitzaMatvalors(-1, 0);//falla
+		m.inicialitzaMatvalors(0, 0);//dona bé
+		m.inicialitzaMatvalors(3, 0);//dona bé
+		m.inicialitzaMatvalors(4, 0);//falla
+		
+		m.inicialitzaMatvalors(0,-1);//falla
+		//m.inicialitzaMatvalors(0, 0);//igual que adalt
+		m.inicialitzaMatvalors(0,2);//dona bé
+		m.inicialitzaMatvalors(0,3);//falla
+		
+		//forntera
+		
+		m.inicialitzaMatvalors(-2, 0);//falla
+		m.inicialitzaMatvalors(1, 0);//dona bé
+		m.inicialitzaMatvalors(2, 0);//dona bé
+		m.inicialitzaMatvalors(5, 0);//falla
+		
+		m.inicialitzaMatvalors(0,-2);//falla
+		m.inicialitzaMatvalors(0, 1);//dona bé
+		//m.inicialitzaMatvalors(0,1);//igual que l'anterior
+		m.inicialitzaMatvalors(0,4);//falla
+		
+		
+		//pairwise
+		
+		//m.inicialitzaMatvalors(0,0);// valid valid, ja esta fet adalt
+		//m.inicialitzaMatvalors(0, -1); valid invalid, ja esta fet adalt
+		//m.inicialitzaMatvalors(-1, 0); invalid valid, ja esta fet adalt
+		m.inicialitzaMatvalors(-1, -1);// invalid invalid
+		
+		
+		
+		
+		//fa falta fer el mock per els valor que son valids per comprovar si es pasa tot correctament
 	}
 
 	@Test
