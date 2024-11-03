@@ -17,9 +17,6 @@ public class BuscaminesModel implements Model {
 		
 	}
 	
-	public boolean isPrimerClic() {
-		return true; //valor temporal
-	}
 	public int[][] getValosr(int i, int j){
 		int v[][] = {{0}};
 		return v; //valor temporal
