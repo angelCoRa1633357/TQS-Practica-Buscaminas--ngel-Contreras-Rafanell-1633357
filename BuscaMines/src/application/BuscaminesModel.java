@@ -1,4 +1,5 @@
 package application;
+import java.util.ArrayList;
 
 public class BuscaminesModel implements Model {
 	private int llargada;
