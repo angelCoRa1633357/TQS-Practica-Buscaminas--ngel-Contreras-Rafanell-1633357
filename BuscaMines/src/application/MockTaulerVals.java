@@ -2,16 +2,54 @@ package application;
 
 public class MockTaulerVals implements TaulerValors {
 	private int count=0;
+	private int countGets=0;
 	
 	public MockTaulerVals() {
 		
 	}
 	
 	public int getLlargada() {
-		return 0;
+		int val=0;
+		switch(this.countGets) {
+		case 0:
+			val= 1;
+			break;
+		case 1:
+			val=2;
+			break;
+		case 2:
+			val=1;
+			break;
+		case 3:
+			val=2;
+			break;
+		case 4:
+			val=2;
+			break;
+		}
+		return val;
 	}
 	public int getAmplada() {
-		return 0;
+		int val=0;
+		switch(this.countGets) {
+		case 0:
+			val= 1;
+			break;
+		case 1:
+			val=1;
+			break;
+		case 2:
+			val=2;
+			break;
+		case 3:
+			val=2;
+			break;
+		case 4:
+			val=2;
+			break;
+		}
+		this.countGets++;
+		return val;
 	}
 	
 	public void setLlargada(int ll) {
@@ -31,9 +69,9 @@ public class MockTaulerVals implements TaulerValors {
 	
 	public int[][] getMat() {
 		this.count++;
-		if(this.count<8) {
+		if(this.count<7) {
 			
-			return new int[4][3];
+			return new int[][] {{0,1,-1},{0,1,1},{1,-1,1},{0,1,0}};
 		}else {
 			return new int[][]{{0,0,1,-1},{1,1,2,1},{2,-1,1,1},{-1,2,1,-1}};
 		}

@@ -58,6 +58,7 @@ public class BuscaminesModel implements Model {
 		int[][] matV=TaulerV.getMat();
 		boolean[][] matDisp = TaulerD.getMartrix();
 		int[][] v = {{}};
+		System.out.print(matDisp[i][j]);
 		if(matDisp[i][j] == false) {
 			
 			TaulerD.posDescoberta(i, j);
@@ -72,18 +73,21 @@ public class BuscaminesModel implements Model {
 			}
 			
 			while(arrayBusca.size()>0 ) {
-				
+				//System.out.print(arrayBusca.size());
 				int posi = arrayBusca.get(0)[0];
 				int posj = arrayBusca.get(0)[1];
 				
 				arrayBusca.remove(0);
-				
-				for(int k=-1;i<2;i++) {
+				//System.out.print(arrayBusca.size());
+				for(int k=-1;k<2;k++) {
+					//System.out.print("sssjjjjjj");
 					for(int l=-1;l<2;l++) {
+						//System.out.print("llllllllllllllll");
 						int auxPosi = posi + k;
 						int auxPosj = posj + l;
-						if((auxPosi>=0 && this.llargada>auxPosi) || (auxPosj>=0 && this.amplitud>auxPosj)) {
- 
+						
+						if((auxPosi>=0 && this.llargada>auxPosi) && (auxPosj>=0 && this.amplitud>auxPosj)) {
+							
 							int val = matV[auxPosi][auxPosj];
 							int[] objectiu = new int[] {val,auxPosi,auxPosj};
 							
@@ -94,9 +98,10 @@ public class BuscaminesModel implements Model {
 						        break;
 						    	}
 						    }
+						    //System.out.println(val);
 						    if(!trobat) {
 						    	TaulerD.posDescoberta(auxPosi,auxPosj);
-						    	arrayBusca.add(objectiu);
+						    	arrayValors.add(objectiu);
 						    	if(val==0) {
 						    		arrayBusca.add(new int[] {auxPosi,auxPosj});
 						    	}
@@ -111,6 +116,7 @@ public class BuscaminesModel implements Model {
 			}
 			
 			v = new int[arrayValors.size()][3];
+			
 			for(int k=0;k<arrayValors.size();k++) {
 				for(int l=0;l<3;l++) {
 					v[k][l] = arrayValors.get(k)[l];
@@ -119,13 +125,19 @@ public class BuscaminesModel implements Model {
 		}
 		
 		invariants();
-		for(int k=0;k<v.length;k++) {
-			assert(v[k][0]>-1 && v[k][0]<9 );
-			assert(v[k][1]>=0 && this.llargada>v[k][1]);
-			assert(v[k][2]>=0 && this.amplitud>v[k][2]);
+		
+		if(v[0].length>0) {
 			
+			for(int k=0;k<v.length;k++) {
+				System.out.println(v[k][1]);
+				assert(v[k][0]>-1 && v[k][0]<9 );
+				assert(v[k][1]>=0 && this.llargada>v[k][1]);
+				assert(v[k][2]>=0 && this.amplitud>v[k][2]);
 			
+			}
+
 		}
+		
 		return v; //valor temporal
 	}
 	public boolean isBomba(int i, int j) {

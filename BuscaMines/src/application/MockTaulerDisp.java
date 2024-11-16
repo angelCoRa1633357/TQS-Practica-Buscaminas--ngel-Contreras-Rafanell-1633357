@@ -3,7 +3,7 @@ package application;
 public class MockTaulerDisp implements TaulerDisponibilitat {
 	private int numAcces = 0;
 	private int count =0;
-	
+	private int countGets=0;
 	public MockTaulerDisp() {
 		
 	}
@@ -17,7 +17,8 @@ public class MockTaulerDisp implements TaulerDisponibilitat {
 	public boolean[][] getMartrix(){
 		
 		boolean [][] res;
-		if(count<8) {
+		this.count++;
+		if(this.count>6) {
 			
 			if(numAcces==0) {
 				res = new boolean[][]{{false,false,false,false},
@@ -36,20 +37,58 @@ public class MockTaulerDisp implements TaulerDisponibilitat {
 			this.numAcces = (this.numAcces + 1)%2;
 			
 		}else {
-			res = new boolean[][]{{false,false,false,false},
-				{false,false,false,false},
-				{false,false,false,false},
-				{false,false,false,false}};
+			res = new boolean[][]{{true,true,true},
+				{true,true,true},
+				{true,true,true},
+				{true,true,true}};
 			
 		}
+		
 		
 		return res;
 	}
 	public int getLlargada() {
-		return 4;
+		int val=0;
+		switch(this.countGets) {
+		case 0:
+			val= 1;
+			break;
+		case 1:
+			val=2;
+			break;
+		case 2:
+			val=1;
+			break;
+		case 3:
+			val=2;
+			break;
+		case 4:
+			val=2;
+			break;
+		}
+		return val;
 	}
 	public int getAmplada() {
-		return 4;
+		int val=0;
+		switch(this.countGets) {
+		case 0:
+			val= 1;
+			break;
+		case 1:
+			val=1;
+			break;
+		case 2:
+			val=2;
+			break;
+		case 3:
+			val=2;
+			break;
+		case 4:
+			val=2;
+			break;
+		}
+		this.countGets++;
+		return val;
 	}
 	
 	public void posDescoberta(int i, int j) {

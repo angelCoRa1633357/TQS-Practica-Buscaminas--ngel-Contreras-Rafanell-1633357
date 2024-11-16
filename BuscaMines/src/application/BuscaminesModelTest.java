@@ -229,13 +229,16 @@ class BuscaminesModelTest {
 		// la i no pot ser mes gran que l'amplada ni inferior a 0, i la j no pot ser mes gran que la llargada ni inferior a 0
 		//  i valor frontera -1,0 amplada-1 i amplada , valors limit -2, 1, amplada-2 i amplada+1
 		// j valor frontera -1, 0, llargada-1 i llargada, valor limit -2,1, llargada-2 i llargada+1
-		v = m.getValosr(0, 0);
+		
 		//limits
 		assertThrows(AssertionError.class, () -> {
 			m.getValosr(-1, 0);//falla
 		});
+		
 		v =m.getValosr(0, 0);//dona bé
+		
 		v =m.getValosr(3, 0);//dona bé
+		
 		assertThrows(AssertionError.class, () -> {
 			m.getValosr(4, 0);//falla
 		});
@@ -246,6 +249,7 @@ class BuscaminesModelTest {
 		});
 		//m.getValosr(0, 0);//igual que adalt
 		v =m.getValosr(0,2);//dona bé
+		
 		assertThrows(AssertionError.class, () -> {
 			m.getValosr(0,3);//falla
 		});
@@ -282,16 +286,36 @@ class BuscaminesModelTest {
 		//  1  1 2  1
 		//  2 -1 1  1
 		// -1  2 1 -1
-
+		System.out.println("sssssss");
 		v = m2.getValosr(0,0);
 		int[][] res1= {{0,0,0},{0,0,1},{1,1,0},{1,1,1},{1,0,2},{2,1,2}};
-		assertEquals(v,res1);
+		
+		System.out.println("sssssss");
+		System.out.println(v.length);
+		for(int i=0;i<v.length;i++) {
+			for(int j=0;j<3;j++) {
+				System.out.print(v[i][j]);
+				
+			}
+			System.out.println();
+		}
+		
+		for(int i=0;i<res1.length;i++) {
+			for(int j=0;j<res1[i].length;j++) {
+				System.out.print(v[i][j]);
+				assertEquals(v[i][j],res1[i][j]);
+			}
+		}
+		
 		
 		v = m2.getValosr(0,1);
 		res1= new int[][] {{}};//com agafa una poscio ja visitada ha de retornar un buit
-		assertEquals(v,res1);
-		
-		assertEquals(v,res1);
+		for(int i=0;i<res1.length;i++) {
+			for(int j=0;j<res1[i].length;j++) {
+				assertEquals(v[i][j],res1[i][j]);
+			}
+		}
+
 		
 	}
 
@@ -370,7 +394,7 @@ class BuscaminesModelTest {
 		assertEquals(res,false);
 		
 		res = m2.isBomba(2,1);
-		assertEquals(res,false);
+		assertEquals(res,true);
 		
 		res = m2.isBomba(3,0);
 		assertEquals(res,true);
