@@ -60,6 +60,7 @@ public class BuscaminesModel implements Model {
 		int[][] v = {{}};
 		if(matDisp[i][j] == false) {
 			
+			TaulerD.posDescoberta(i, j);
 			ArrayList<int[]> arrayBusca = new ArrayList<>();//es guarda tots el zeros, ja que es on es fara la cerca.
 			ArrayList<int[]> arrayValors = new ArrayList<>();
 
@@ -82,7 +83,7 @@ public class BuscaminesModel implements Model {
 						int auxPosi = posi + k;
 						int auxPosj = posj + l;
 						if((auxPosi>=0 && this.llargada>auxPosi) || (auxPosj>=0 && this.amplitud>auxPosj)) {
-							
+ 
 							int val = matV[auxPosi][auxPosj];
 							int[] objectiu = new int[] {val,auxPosi,auxPosj};
 							
@@ -94,6 +95,7 @@ public class BuscaminesModel implements Model {
 						    	}
 						    }
 						    if(!trobat) {
+						    	TaulerD.posDescoberta(auxPosi,auxPosj);
 						    	arrayBusca.add(objectiu);
 						    	if(val==0) {
 						    		arrayBusca.add(new int[] {auxPosi,auxPosj});
@@ -117,21 +119,40 @@ public class BuscaminesModel implements Model {
 		}
 		
 		invariants();
+		for(int k=0;k<v.length;k++) {
+			assert(v[k][0]>-1 && v[k][0]<9 );
+			assert(v[k][1]>=0 && this.llargada>v[k][1]);
+			assert(v[k][2]>=0 && this.amplitud>v[k][2]);
+			
+			
+		}
 		return v; //valor temporal
 	}
 	public boolean isBomba(int i, int j) {
-		return true; //valor temporal
+		invariants();
+		assert(i>=0 && this.llargada>i);
+		assert(j>=0 && this.amplitud>j);
+		
+		int[][] matV=TaulerV.getMat();
+		
+		boolean res = (matV[i][j]==-1);
+		
+		invariants();
+		return res; //valor temporal
 	}
 	
 	public int getLlargada() {
+		invariants();
 		return this.llargada;
 	}
 	
 	public int getAmplada() {
+		invariants();
 		return this.amplitud;
 	}
 	
 	public int getNumMines() {
+		invariants();
 		return this.numMines;
 	}
 	
