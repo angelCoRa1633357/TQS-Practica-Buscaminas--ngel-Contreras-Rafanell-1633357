@@ -8,14 +8,41 @@ public class BuscaminesModel implements Model {
 	private TaulerValors TaulerV;
 	private TaulerDisponibilitat TaulerD; 
 	
+	private void invariants() {
+		assert(llargada>0);
+		assert(amplitud>0);
+		assert(numMines<(llargada*amplitud));
+		
+	}
 	
-	public BuscaminesModel(int llargada, int amplitud, int numMines, TaulerValors Tv,TaulerDisponibilitat Td ) {
+	
+	public BuscaminesModel(int ll, int am, int nM, TaulerValors Tv,TaulerDisponibilitat Td ) {
+		assert(ll>0);
+		assert(am>0);
+		assert(nM<(ll*am));
+		this.llargada = ll;
+		this.amplitud = am;
+		this.numMines = nM;
+		TaulerV = Tv;
+		TaulerD = Td;
+		
+		this.TaulerV.setLlargada(ll);
+		this.TaulerV.setAmplada(am);
+		this.TaulerV.setMines(nM);
+		
+		this.TaulerD.setLlargada(ll);
+		this.TaulerD.setAmplada(am);
+		
 		
 	}
 	
 	
 	public void inicialitzaMatvalors(int i, int j) {
-		
+		invariants();
+		assert(i>=0 && this.llargada>i);
+		assert(j>=0 && this.amplitud>j);
+		TaulerV.initMat(i,j);
+		TaulerD.posDescoberta(i,j);
 	}
 	
 	public int[][] getValosr(int i, int j){
@@ -26,16 +53,16 @@ public class BuscaminesModel implements Model {
 		return true; //valor temporal
 	}
 	
-	private int getLlargada() {
-		return 0;
+	public int getLlargada() {
+		return this.llargada;
 	}
 	
-	private int getAmplada() {
-		return 0;
+	public int getAmplada() {
+		return this.amplitud;
 	}
 	
-	private int getNumMines() {
-		return 0;
+	public int getNumMines() {
+		return this.numMines;
 	}
 	
 	

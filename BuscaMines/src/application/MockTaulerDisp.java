@@ -43,5 +43,12 @@ public class MockTaulerDisp implements TaulerDisponibilitat {
 	public void posDescoberta(int i, int j) {
 		
 	}
+	
+	public void setLlargada(int ll) {
+		
+	}
+	public void setAmplada(int am) {
+		
+	}
 
 }

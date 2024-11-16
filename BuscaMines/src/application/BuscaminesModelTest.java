@@ -36,6 +36,13 @@ class BuscaminesModelTest {
 		BuscaminesModel m = new BuscaminesModel(1,1,0,MockVals,MockDips); // no ha desaltar cap error de Contracte
 		assertEquals(MockDips.getLlargada(),1);
 		assertEquals(MockVals.getLlargada(),1);
+		assertEquals(MockDips.getAmplada(),1);
+		assertEquals(MockVals.getAmplada(),1);
+		assertEquals(m.getLlargada(),1);
+		assertEquals(m.getLlargada(),1);
+		assertEquals(m.getAmplada(),1);
+		assertEquals(m.getAmplada(),1);
+		assertEquals(m.getNumMines(),0);
 		
 		
 		assertThrows(AssertionError.class, () -> {
@@ -46,6 +53,13 @@ class BuscaminesModelTest {
 		m = new BuscaminesModel(2,1,0,MockVals,MockDips); // no ha de saltar cap error de Contracte
 		assertEquals(MockDips.getLlargada(),2);
 		assertEquals(MockVals.getLlargada(),2);
+		assertEquals(MockDips.getAmplada(),1);
+		assertEquals(MockVals.getAmplada(),1);
+		assertEquals(m.getLlargada(),2);
+		assertEquals(m.getLlargada(),2);
+		assertEquals(m.getAmplada(),1);
+		assertEquals(m.getAmplada(),1);
+		assertEquals(m.getNumMines(),0);
 		
 		
 		assertThrows(AssertionError.class, () -> {
@@ -56,9 +70,9 @@ class BuscaminesModelTest {
 		
 		//amplada
 		
-		m = new BuscaminesModel(1,1,0,MockVals,MockDips); // no ha de saltar cap error de Contracte
-		assertEquals(MockDips.getAmplada(),1);
-		assertEquals(MockVals.getAmplada(),1);
+		//m = new BuscaminesModel(1,1,0,MockVals,MockDips); // no ha de saltar cap error de Contracte //La mateixa que adalt
+
+		
 		
 		assertThrows(AssertionError.class, () -> {
 			new BuscaminesModel(1,0,0,MockVals,MockDips); //ha de saltar un error de Contracte
@@ -67,8 +81,15 @@ class BuscaminesModelTest {
 		
 		 
 		m = new BuscaminesModel(1,2,0,MockVals,MockDips); // no ha de saltar cap error de Contracte
-		assertEquals(MockDips.getAmplada(),1);
-		assertEquals(MockVals.getAmplada(),1);
+		assertEquals(MockDips.getLlargada(),1);
+		assertEquals(MockVals.getLlargada(),1);
+		assertEquals(MockDips.getAmplada(),2);
+		assertEquals(MockVals.getAmplada(),2);
+		assertEquals(m.getLlargada(),1);
+		assertEquals(m.getLlargada(),1);
+		assertEquals(m.getAmplada(),2);
+		assertEquals(m.getAmplada(),2);
+		assertEquals(m.getNumMines(),0);
 		
 		assertThrows(AssertionError.class, () -> {
 			new BuscaminesModel(1,-1,0,MockVals,MockDips);//ha de saltar un error de Contracte
@@ -78,6 +99,16 @@ class BuscaminesModelTest {
 
 		//numMines en el cas de matriu 2x2 els frontera son 3 i 4, i els limit 2 i 5
 		m = new BuscaminesModel(2,2,3,MockVals,MockDips); // no ha de saltar cap error de Contracte
+		assertEquals(MockDips.getLlargada(),2);
+		assertEquals(MockVals.getLlargada(),2);
+		assertEquals(MockDips.getAmplada(),2);
+		assertEquals(MockVals.getAmplada(),2);
+		assertEquals(m.getLlargada(),2);
+		assertEquals(m.getLlargada(),2);
+		assertEquals(m.getAmplada(),2);
+		assertEquals(m.getAmplada(),2);
+		assertEquals(m.getNumMines(),3);
+		
 		assertThrows(AssertionError.class, () -> {
 			new BuscaminesModel(2,2,4,MockVals,MockDips); //ha de saltar un error de Contracte
 		   
@@ -86,6 +117,15 @@ class BuscaminesModelTest {
 
 		 
 		m = new BuscaminesModel(2,2,2,MockVals,MockDips); // no ha de saltar cap error de Contracte
+		assertEquals(MockDips.getLlargada(),2);
+		assertEquals(MockVals.getLlargada(),2);
+		assertEquals(MockDips.getAmplada(),2);
+		assertEquals(MockVals.getAmplada(),2);
+		assertEquals(m.getLlargada(),2);
+		assertEquals(m.getLlargada(),2);
+		assertEquals(m.getAmplada(),2);
+		assertEquals(m.getAmplada(),2);
+		assertEquals(m.getNumMines(),2);
 		assertThrows(AssertionError.class, () -> {
 			new BuscaminesModel(2,2,5,MockVals,MockDips);//ha de saltar un error de Contracte
 		   
@@ -123,6 +163,8 @@ class BuscaminesModelTest {
 			m.inicialitzaMatvalors(-1, 0);//falla
 		});
 		m.inicialitzaMatvalors(0, 0);//dona bé
+		
+		
 		m.inicialitzaMatvalors(3, 0);//dona bé
 		assertThrows(AssertionError.class, () -> {
 			m.inicialitzaMatvalors(4, 0);//falla
