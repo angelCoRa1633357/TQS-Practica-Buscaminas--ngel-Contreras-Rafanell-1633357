@@ -296,7 +296,85 @@ class BuscaminesModelTest {
 
 	@Test
 	void testIsBomba() {
-		fail("Not yet implemented");
+		TaulerDisponibilitat MockDips = new MockTaulerDisp();
+		TaulerValors MockVals =  new MockTaulerVals();
+		final BuscaminesModel m = new BuscaminesModel(4,3,2,MockVals,MockDips);
+		boolean res ;
+		//test per veure si el DoC va bé
+		//ha de ser una pocisio no clicada(la matriu de disponibitat aquela pos fica 0)(retorna buit) i ha de estar en una pocisio correcta(si no s'executa un asset)
+		//mirem el limits i frontera del parametre "i", i "j"
+		// la i no pot ser mes gran que l'amplada ni inferior a 0, i la j no pot ser mes gran que la llargada ni inferior a 0
+		//  i valor frontera -1,0 amplada-1 i amplada , valors limit -2, 1, amplada-2 i amplada+1
+		// j valor frontera -1, 0, llargada-1 i llargada, valor limit -2,1, llargada-2 i llargada+1
+		res = m.isBomba(0, 0);
+		//limits
+		assertThrows(AssertionError.class, () -> {
+			m.getValosr(-1, 0);//falla
+		});
+		res =m.isBomba(0, 0);//dona bé
+		res =m.isBomba(3, 0);//dona bé
+		assertThrows(AssertionError.class, () -> {
+			m.isBomba(4, 0);//falla
+		});
+		
+		
+		assertThrows(AssertionError.class, () -> {
+			m.isBomba(0,-1);//falla
+		});
+		//m.isBomba(0, 0);//igual que adalt
+		res =m.isBomba(0,2);//dona bé
+		assertThrows(AssertionError.class, () -> {
+			m.isBomba(0,3);//falla
+		});
+		
+				
+		//forntera
+		
+		assertThrows(AssertionError.class, () -> {
+			m.getValosr(-2, 0);//falla
+		});
+		res =m.isBomba(1, 0);//dona bé
+		res =m.isBomba(2, 0);//dona bé
+		assertThrows(AssertionError.class, () -> {
+			m.getValosr(5, 0);//falla
+		});
+		
+		
+		assertThrows(AssertionError.class, () -> {
+			m.getValosr(0,-2);//falla
+		});
+		res =m.isBomba(0, 1);//dona bé
+		//m.getValosr(0,1);//igual que l'anterior
+		assertThrows(AssertionError.class, () -> {
+			m.isBomba(0,4);//falla
+		});
+		
+		
+		
+		
+		MockDips = new MockTaulerDisp();
+		MockVals =  new MockTaulerVals();
+		BuscaminesModel m2 = new BuscaminesModel(4,4,2,MockVals,MockDips);
+		//matriu valors
+		//  0  0 1 -1
+		//  1  1 2  1
+		//  2 -1 1  1
+		// -1  2 1 -1
+		
+		
+		res = m2.isBomba(0,0);
+		assertEquals(res,false);
+		
+		res = m2.isBomba(1,1);
+		assertEquals(res,false);
+		
+		res = m2.isBomba(2,1);
+		assertEquals(res,false);
+		
+		res = m2.isBomba(3,0);
+		assertEquals(res,true);
+		
+		
 	}
 
 }
