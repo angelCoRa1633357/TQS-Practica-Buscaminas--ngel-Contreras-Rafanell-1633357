@@ -1,5 +1,6 @@
 package application;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BuscaminesModel implements Model {
 	private int llargada;
@@ -32,6 +33,7 @@ public class BuscaminesModel implements Model {
 		
 		this.TaulerD.setLlargada(ll);
 		this.TaulerD.setAmplada(am);
+		invariants();
 		
 		
 	}
@@ -39,14 +41,82 @@ public class BuscaminesModel implements Model {
 	
 	public void inicialitzaMatvalors(int i, int j) {
 		invariants();
+		
 		assert(i>=0 && this.llargada>i);
 		assert(j>=0 && this.amplitud>j);
 		TaulerV.initMat(i,j);
 		TaulerD.posDescoberta(i,j);
+		
+		invariants();
 	}
 	
 	public int[][] getValosr(int i, int j){
-		int v[][] = {{0}};
+		invariants();
+		assert(i>=0 && this.llargada>i);
+		assert(j>=0 && this.amplitud>j);
+		
+		int[][] matV=TaulerV.getMat();
+		boolean[][] matDisp = TaulerD.getMartrix();
+		int[][] v = {{}};
+		if(matDisp[i][j] == false) {
+			
+			ArrayList<int[]> arrayBusca = new ArrayList<>();//es guarda tots el zeros, ja que es on es fara la cerca.
+			ArrayList<int[]> arrayValors = new ArrayList<>();
+
+			arrayValors.add(new int[] {matV[i][j],i,j});
+			
+			if(matV[i][j]==0) {//nomes farem la busqueda d'altres pocisions, si la inicial es 0
+				
+				arrayBusca.add(new int[] {i,j});
+			}
+			
+			while(arrayBusca.size()>0 ) {
+				
+				int posi = arrayBusca.get(0)[0];
+				int posj = arrayBusca.get(0)[1];
+				
+				arrayBusca.remove(0);
+				
+				for(int k=-1;i<2;i++) {
+					for(int l=-1;l<2;l++) {
+						int auxPosi = posi + k;
+						int auxPosj = posj + l;
+						if((auxPosi>=0 && this.llargada>auxPosi) || (auxPosj>=0 && this.amplitud>auxPosj)) {
+							
+							int val = matV[auxPosi][auxPosj];
+							int[] objectiu = new int[] {val,auxPosi,auxPosj};
+							
+							boolean trobat = false;
+						    for (int[] fila : arrayValors) {
+						    	if (Arrays.equals(fila, objectiu)) {
+						    	trobat = true;
+						        break;
+						    	}
+						    }
+						    if(!trobat) {
+						    	arrayBusca.add(objectiu);
+						    	if(val==0) {
+						    		arrayBusca.add(new int[] {auxPosi,auxPosj});
+						    	}
+						    	 
+						    }
+						     
+						     
+						}
+						
+					}
+				}
+			}
+			
+			v = new int[arrayValors.size()][3];
+			for(int k=0;k<arrayValors.size();k++) {
+				for(int l=0;l<3;l++) {
+					v[k][l] = arrayValors.get(k)[l];
+				}
+			}
+		}
+		
+		invariants();
 		return v; //valor temporal
 	}
 	public boolean isBomba(int i, int j) {

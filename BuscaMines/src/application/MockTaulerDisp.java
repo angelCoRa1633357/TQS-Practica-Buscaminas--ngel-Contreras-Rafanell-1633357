@@ -2,6 +2,7 @@ package application;
 
 public class MockTaulerDisp implements TaulerDisponibilitat {
 	private int numAcces = 0;
+	private int count =0;
 	
 	public MockTaulerDisp() {
 		
@@ -15,22 +16,33 @@ public class MockTaulerDisp implements TaulerDisponibilitat {
 	
 	public boolean[][] getMartrix(){
 		
-		boolean [][] res = new boolean[4][4];
-		if(numAcces==0) {
-			res = new boolean[][]{{false,false,false,false},
-					{false,false,false,false},
-					{false,false,false,false},
-					{false,false,false,false}};
+		boolean [][] res;
+		if(count<8) {
 			
+			if(numAcces==0) {
+				res = new boolean[][]{{false,false,false,false},
+						{false,false,false,false},
+						{false,false,false,false},
+						{false,false,false,false}};
+				
+				
+			}else {
+				res = new boolean[][]{{true,true,true,false},
+						{true,true,true,false},
+						{false,false,false,false},
+						{false,false,false,false}};
+			
+			}
+			this.numAcces = (this.numAcces + 1)%2;
 			
 		}else {
-			res = new boolean[][]{{true,true,true,false},
-					{true,true,true,false},
-					{false,false,false,false},
-					{false,false,false,false}};
-		
+			res = new boolean[][]{{false,false,false,false},
+				{false,false,false,false},
+				{false,false,false,false},
+				{false,false,false,false}};
+			
 		}
-		this.numAcces = (this.numAcces + 1)%2;
+		
 		return res;
 	}
 	public int getLlargada() {

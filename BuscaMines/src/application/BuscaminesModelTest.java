@@ -275,8 +275,7 @@ class BuscaminesModelTest {
 		
 		
 		//ara probem el mecanisme
-		MockDips = new MockTaulerDisp();
-		MockVals =  new MockTaulerVals();
+
 		BuscaminesModel m2 = new BuscaminesModel(4,4,2,MockVals,MockDips);
 		//matriu valors
 		//  0  0 1 -1
@@ -289,7 +288,9 @@ class BuscaminesModelTest {
 		assertEquals(v,res1);
 		
 		v = m2.getValosr(0,1);
-		res1= new int[][]{{}};//com agafa una poscio ja visitada ha de retornar un buit
+		res1= new int[][] {{}};//com agafa una poscio ja visitada ha de retornar un buit
+		assertEquals(v,res1);
+		
 		assertEquals(v,res1);
 		
 	}
@@ -352,8 +353,7 @@ class BuscaminesModelTest {
 		
 		
 		
-		MockDips = new MockTaulerDisp();
-		MockVals =  new MockTaulerVals();
+
 		BuscaminesModel m2 = new BuscaminesModel(4,4,2,MockVals,MockDips);
 		//matriu valors
 		//  0  0 1 -1

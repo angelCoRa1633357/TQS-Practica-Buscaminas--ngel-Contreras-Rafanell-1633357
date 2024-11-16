@@ -1,6 +1,7 @@
 package application;
 
 public class MockTaulerVals implements TaulerValors {
+	private int count=0;
 	
 	public MockTaulerVals() {
 		
@@ -29,7 +30,17 @@ public class MockTaulerVals implements TaulerValors {
 	}
 	
 	public int[][] getMat() {
-		return new int[1][1];
+		this.count++;
+		if(this.count<8) {
+			
+			return new int[4][3];
+		}else {
+			return new int[][]{{0,0,1,-1},{1,1,2,1},{2,-1,1,1},{-1,2,1,-1}};
+		}
+		
+	
+		
+		
 	}
 
 }
