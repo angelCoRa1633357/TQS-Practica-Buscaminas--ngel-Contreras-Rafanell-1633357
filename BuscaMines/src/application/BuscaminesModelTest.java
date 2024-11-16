@@ -363,6 +363,7 @@ class BuscaminesModelTest {
 		
 		
 		res = m2.isBomba(0,0);
+		
 		assertEquals(res,false);
 		
 		res = m2.isBomba(1,1);
