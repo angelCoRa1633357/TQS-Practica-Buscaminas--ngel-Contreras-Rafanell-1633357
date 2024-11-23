@@ -55,6 +55,18 @@ public class BuscaminesTaulerDisp implements TaulerDisponibilitat {
 	public void posDescoberta(int i, int j) {
 		assert(i>=0 && j>=0 && i<this.Amplada && j<this.Llargada );
 		
+		if(!this.matGen) {
+			this.matGen=true;
+			 this.mat = new boolean[this.Amplada][this.Llargada];
+			 for(int k=0;k<this.Amplada;k++) {
+				 for(int l=0;l<this.Llargada;l++) {
+					 this.mat[k][l]=false;
+				 }
+			 }
+			
+		}
+		
+		
 		this.mat[i][j]=true;
 		// TODO Auto-generated method stub
 
