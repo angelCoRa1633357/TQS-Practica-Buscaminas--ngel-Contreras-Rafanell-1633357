@@ -14,7 +14,7 @@ class BuscaminesTaulerDispTest {
 		
 		//pariicions equivalensts: Com no te parametres d'entrada, utiltzarem els valors que utilitzara que sera l'amplada i la llargada, i els modificarem amb els setter
 		// i creant noves instancies.
-		// La particio seria 0 i 1 com a fronteres, -1 i 2 com a frontera.
+		// seria 0 i 1 com a fronteres, -1 i 2 com a frontera.
 		// Com aquestes son les particion equivalent dels setters((-1,0)invalids i (1,2)valids), el -1 i 0 no es podem settejar, pero el 0 sera un valor per defecte aixi que aquest si es pot 
 		// testjar. Com hem fet 
 		
