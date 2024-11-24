@@ -38,10 +38,12 @@ class BuscaminesTaulerValorsTest {
 			Tv2.initMat(0, 0);//dona error, amplada i mines no setejades.
 		});
 		TaulerValors Tv21 = new BuscaminesTaulerValors(Rmock);
-		Tv21.setMines(1);
-		assertThrows(AssertionError.class, () -> {
-			Tv21.initMat(0, 0);//dona error, amplada i llaragada no setejades.
-		});
+		
+		//assertThrows(AssertionError.class, () -> {El cas de setejar mines i no amplada ni llargada,
+		//no es pot fer, ja que per setejar les mines fa falta setjar l'amplada i la largada abans
+		//	Tv21.setMines(1);
+		//	Tv21.initMat(0, 0);//dona error, amplada i llaragada no setejades.
+		//});
 		
 		///TEST parametres 
 		
@@ -84,7 +86,6 @@ class BuscaminesTaulerValorsTest {
 				assertEquals(Resmat[i][j],mat[i][j]);
 			}
 		}
-		
 		//i=-1
 		Rmock = mock(Random.class);
 		TaulerValors Tv5 = new BuscaminesTaulerValors(Rmock);
@@ -99,7 +100,7 @@ class BuscaminesTaulerValorsTest {
 		assertThrows(AssertionError.class, () -> {
 			Tv5.initMat(-2, 0);//dona error, amplada no setejades.
 		});
-	
+
 		//i=amplada-1
 		Tv5.setAmplada(4);
 		Tv5.setLlargada(2);
@@ -114,12 +115,17 @@ class BuscaminesTaulerValorsTest {
 		mat = new int[][] {{1,1},{1,-1},{2,2},{1,-1}};
 		// 1 1
 		// 1 -1
+
+
+		
+		
 		for(int i=0;i<Resmat.length;i++) {
 			for(int j=0;j<Resmat[0].length;j++) {
+
 				assertEquals(Resmat[i][j],mat[i][j]);
 			}
 		}
-		
+
 		//i=amplada-2
 		Rmock = mock(Random.class);
 		TaulerValors Tv6 = new BuscaminesTaulerValors(Rmock);
@@ -202,7 +208,7 @@ class BuscaminesTaulerValorsTest {
 		Tv10.setAmplada(2);
 		Tv10.setLlargada(4);
 		Tv10.setMines(2);
-		when(Rmock.Random(4, 2)).thenReturn(new int[]{1,1}).thenReturn(new int[]{1,1}).thenReturn(new int[]{0,2});//si el random dona dos comps el mateixa pos, ha de seguir buscant mines.
+		when(Rmock.Random(2, 4)).thenReturn(new int[]{1,1}).thenReturn(new int[]{1,1}).thenReturn(new int[]{0,2});//si el random dona dos comps el mateixa pos, ha de seguir buscant mines.
 		//1 2 -1 1
 		//1-1 2 1
 		
@@ -219,10 +225,10 @@ class BuscaminesTaulerValorsTest {
 		//j=Llargada-2
 		Rmock = mock(Random.class);
 		TaulerValors Tv11 = new BuscaminesTaulerValors(Rmock);
-		Tv11.setAmplada(4);
-		Tv11.setLlargada(2);
+		Tv11.setAmplada(2);
+		Tv11.setLlargada(4);
 		Tv11.setMines(2);
-		when(Rmock.Random(4, 2)).thenReturn(new int[]{1,1}).thenReturn(new int[]{1,1}).thenReturn(new int[]{0,3});//si el random dona dos comps el mateixa pos, ha de seguir buscant mines.
+		when(Rmock.Random(2, 4)).thenReturn(new int[]{1,1}).thenReturn(new int[]{1,1}).thenReturn(new int[]{0,3});//si el random dona dos comps el mateixa pos, ha de seguir buscant mines.
 		//1 1 2 -1
 		//1-1 2 1
 		Tv11.initMat(0, 2);
@@ -377,7 +383,7 @@ class BuscaminesTaulerValorsTest {
 	@Test
 	void testSetMines() {
 		//ha de ser mer gran que 0, i no pot ser ni igual ni mes gran que Amplada*llargadar, o s'ha d'inicialtzar les ampladis i llargades abans
-		
+
 		assertThrows(AssertionError.class, () -> {
 			Random Rmock = mock(Random.class);
 			TaulerValors Tv = new BuscaminesTaulerValors(Rmock);
@@ -425,9 +431,9 @@ class BuscaminesTaulerValorsTest {
 		Random Rmock = mock(Random.class);
 		TaulerValors Tv = new BuscaminesTaulerValors(Rmock);
 		Tv.setAmplada(4);
-		Tv.setLlargada(2);
+		Tv.setLlargada(4);
 		Tv.setMines(2);
-		when(Rmock.Random(4, 2)).thenReturn(new int[]{1,1}).thenReturn(new int[]{1,1}).thenReturn(new int[]{0,3});//si el random dona dos comps el mateixa pos, ha de seguir buscant mines.
+		when(Rmock.Random(4, 4)).thenReturn(new int[]{1,1}).thenReturn(new int[]{1,1}).thenReturn(new int[]{0,3});//si el random dona dos comps el mateixa pos, ha de seguir buscant mines.
 		//1 1 2 -1
 		//1-1 2 1
 		Tv.initMat(0, 2);
@@ -435,8 +441,10 @@ class BuscaminesTaulerValorsTest {
 		int numMine=0;
 		for(int i=0;i<Resmat.length;i++) {
 			for(int j=0;j<Resmat[0].length;j++) {
+
 				numMine += (Resmat[i][j]==-1)?1:0;
 			}
+
 		}
 		
 		assertEquals(numMine,2);
@@ -446,10 +454,10 @@ class BuscaminesTaulerValorsTest {
 		
 		Rmock = mock(Random.class);
 		Tv = new BuscaminesTaulerValors(Rmock);
-		Tv.setAmplada(2);
-		Tv.setLlargada(2);
+		Tv.setAmplada(4);
+		Tv.setLlargada(4);
 		Tv.setMines(1);
-		when(Rmock.Random(4, 2)).thenReturn(new int[]{1,1});
+		when(Rmock.Random(4, 4)).thenReturn(new int[]{1,1});
 		//1 1 1 0
 		//1-1 1 0
 		Tv.initMat(0, 2);

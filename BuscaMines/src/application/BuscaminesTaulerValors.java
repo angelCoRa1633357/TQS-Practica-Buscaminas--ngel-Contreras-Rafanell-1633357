@@ -38,11 +38,15 @@ public class BuscaminesTaulerValors implements TaulerValors {
 			}
 			int[][] posMins = new int[this.mines][2];
 			int k=0;
+
 			while(k<this.mines) {//distribuim les mines
+				
 				int[] pos=this.Rand.Random(this.Amplada, this.Llargada);
+
 				if(!isPosInArray(posMins,pos)) {
 					posMins[k][0]=pos[0];
 					posMins[k][1]=pos[1];
+			
 					this.mat[pos[0]][pos[1]]=-1;
 					k++;
 				}
@@ -52,11 +56,14 @@ public class BuscaminesTaulerValors implements TaulerValors {
 			for(int l=0;l<this.Amplada;l++) {
 				for(int h=0;h<this.Llargada;h++) {
 					if(this.mat[l][h]==-1) {//com aquest pocico es una mina, el seu voltant li sumen 1
-						
 						for(int t=(l-1);t<(l+2);t++) {
-							for(int y=(l-1);y<(l+2);y++) {
-								if(l>0 && l<this.Amplada && y>0 && y<this.Llargada) {
-									this.mat[t][y] += 1;
+							for(int y=(h-1);y<(h+2);y++) {
+								if(t>=0 && t<this.Amplada && y>=0 && y<this.Llargada) {
+									if(this.mat[t][y]!=-1 ) {
+										this.mat[t][y] += 1;
+										
+									}
+									
 								}
 							}
 						}
@@ -96,10 +103,12 @@ public class BuscaminesTaulerValors implements TaulerValors {
 	@Override
 	public void setMines(int nm) {
 		assert(this.Llargada>0);
+		
 		assert(this.Amplada>0);
+		assert(nm>0);
 		assert((this.Amplada*this.Llargada)>nm);
 		
-		this.setMines(nm);
+		this.mines=nm;
 
 	}
 
