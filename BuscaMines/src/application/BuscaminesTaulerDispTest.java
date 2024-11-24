@@ -81,7 +81,7 @@ class BuscaminesTaulerDispTest {
 		//cas 0 0 
 		TaulerDisponibilitat Td4 = new BuscaminesTaulerDisp();
 		assertThrows(AssertionError.class, () -> {
-			Td2.getMartrix();			   
+			Td4.getMartrix();			   
 		});
 	}
 
