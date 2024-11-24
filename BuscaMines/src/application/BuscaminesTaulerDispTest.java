@@ -112,7 +112,7 @@ class BuscaminesTaulerDispTest {
 		Td = new BuscaminesTaulerDisp();
 		
 		Td.setAmplada(2);
-		assertEquals(Td.getAmplada(),11);
+		assertEquals(Td.getAmplada(),2);
 	}
 
 	@Test
@@ -161,7 +161,7 @@ class BuscaminesTaulerDispTest {
 		assertEquals(Td.getAmplada(),1);
 		
 		Td.setAmplada(2);
-		assertEquals(Td.getAmplada(),11);
+		assertEquals(Td.getAmplada(),2);
 	}
 
 
