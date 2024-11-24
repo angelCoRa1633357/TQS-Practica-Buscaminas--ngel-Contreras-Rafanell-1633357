@@ -95,14 +95,19 @@ public class BuscaminesTaulerValors implements TaulerValors {
 
 	@Override
 	public void setMines(int nm) {
-		// TODO Auto-generated method stub
+		assert(this.Llargada>0);
+		assert(this.Amplada>0);
+		assert((this.Amplada*this.Llargada)>nm);
+		
+		this.setMines(nm);
 
 	}
 
 	@Override
 	public int[][] getMat() {
-		// TODO Auto-generated method stub
-		return null;
+		assert(this.matGen==true);
+		
+		return this.mat;
 	}
 
 }
