@@ -132,7 +132,7 @@ class BuscaminesTaulerValorsTest {
 		Tv6.setAmplada(4);
 		Tv6.setLlargada(2);
 		Tv6.setMines(2);
-		when(Rmock.Random(4, 2)).thenReturn(new int[]{1,1}).thenReturn(new int[]{1,1}).thenReturn(new int[]{3,1});
+		when(Rmock.Random(4, 2)).thenReturn(new int[]{2,0}).thenReturn(new int[]{1,1}).thenReturn(new int[]{3,1});//si el random dona la mateixa pocisio ha de buscar una altra
 		//1 1
 		//1 -1
 		//2 2

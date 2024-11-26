@@ -6,6 +6,10 @@ public class Controlador {
 		
 	}
 	
+	public void Joc() {
+		
+	}
+	
 	
 
 }

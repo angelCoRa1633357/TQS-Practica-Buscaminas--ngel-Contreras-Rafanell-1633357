@@ -43,7 +43,7 @@ public class BuscaminesTaulerValors implements TaulerValors {
 				
 				int[] pos=this.Rand.Random(this.Amplada, this.Llargada);
 
-				if(!isPosInArray(posMins,pos)) {
+				if(!isPosInArray(posMins,pos) && ((pos[0]!=i) || (pos[1]!=j))) {
 					posMins[k][0]=pos[0];
 					posMins[k][1]=pos[1];
 			
