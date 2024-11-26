@@ -6,8 +6,12 @@ public class Controlador {
 		
 	}
 	
-	public void Joc() {
+	public void jugar() {
 		
+	}
+	
+	public boolean haGuanyat() {
+		return true;
 	}
 	
 	
