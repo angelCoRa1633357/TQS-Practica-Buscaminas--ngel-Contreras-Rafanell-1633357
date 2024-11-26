@@ -45,7 +45,6 @@ public class BuscaminesModel implements Model {
 		assert(i>=0 && this.llargada>i);
 		assert(j>=0 && this.amplitud>j);
 		TaulerV.initMat(i,j);
-		TaulerD.posDescoberta(i,j);
 		
 		invariants();
 	}
