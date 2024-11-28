@@ -2,7 +2,7 @@ package application;
 
 public class Controlador {
 	
-	Controlador(){
+	Controlador(Model m,Vista v,Teclat t){
 		
 	}
 	
@@ -10,10 +10,9 @@ public class Controlador {
 		
 	}
 	
-	public boolean haGuanyat() {
+	private boolean haGuanyat() {
 		return true;
 	}
-	
 	
 
 }
