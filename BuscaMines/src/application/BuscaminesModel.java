@@ -167,6 +167,9 @@ public class BuscaminesModel implements Model {
 		return this.numMines;
 	}
 	
+	public int[][] getMatVals(){
+		return TaulerV.getMat();
+	}
 	
 	
 

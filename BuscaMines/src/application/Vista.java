@@ -2,11 +2,14 @@ package application;
 
 public interface Vista {
 	void mostrarTauler(int[][] mat);
-	void mostraMisatgeGran(String msg);
-	void mostrarMisatgePetit(String msg);
+	void mostrarTitol();
+	void mostrarInfo();
 	void mostrarError(String msg);
 	void flush();
+	void flushNumLins(int n);
 	void demanrPos();
 	void demanarTamanys();
+	void mostrarPerdut();
+	void mostrarGuanyat();
 
 }

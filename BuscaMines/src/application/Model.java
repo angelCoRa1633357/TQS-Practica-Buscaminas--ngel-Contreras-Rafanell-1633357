@@ -9,6 +9,7 @@ public interface Model {
 	int getLlargada();
 	int getAmplada();
 	int getNumMines();
+	int[][] getMatVals();
 	
 
 }

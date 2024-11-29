@@ -20,11 +20,6 @@ class ControladorTest {
 			}
 		}
 	}
-	
-	@Test 
-	void testControlador(){
-		//el model ha d'esta tenir les amplades, llargades i mines inicialitzades DbyC
-	}
 
 	@Test
 	void testJugar() {
