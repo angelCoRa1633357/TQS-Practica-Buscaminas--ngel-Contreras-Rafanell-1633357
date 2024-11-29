@@ -32,6 +32,7 @@ public class Controlador {
             int columna = pos[2];
             
             if(accio==0) {
+            	//System.out.print(fila + " " + columna);
             	if(mat[fila][columna]==-3) {
                     vis.mostrarError("No pots descobrir una cel·la marcada amb una bandera.");
             	}else if(mod.isBomba(fila, columna)) {
@@ -44,9 +45,15 @@ public class Controlador {
             		
             		if(haGuanyat()) {
             			this.vis.mostrarGuanyat();
+            			break;
+            		}else {
+            			vistaPlatilla();
             		}
             	}
             		
+            	}else {
+            		mat[fila][columna]=-3;
+            		vistaPlatilla();
             	}
             }
 			
@@ -57,7 +64,9 @@ public class Controlador {
 	
 	
 	private boolean haGuanyat() {
-		if(desc == (mod.getAmplada()*mod.getLlargada()-mod.getNumMines())) {
+		
+		if(this.desc == (mod.getAmplada()*mod.getLlargada()-mod.getNumMines())) {
+		
 			return true;
 		}else {
 			return false;
@@ -70,6 +79,7 @@ public class Controlador {
 		this.vis.mostrarInfo();
 		this.vis.mostrarTauler(this.mat);
 		this.vis.demanrPos();
+		
 	}
 	
 	private int[] getPos(){
@@ -77,7 +87,7 @@ public class Controlador {
 		
 		while(true) {
 			pos = this.tec.getPosTeclat();
-			if(pos[0]>1 ||pos[0]<0||pos[1]>this.mod.getAmplada() || pos[1]<0 ||pos[2]>this.mod.getLlargada() || pos[2]<0 ) {
+			if(pos[0]>1 ||pos[0]<0||pos[1]>this.mod.getAmplada()-1 || pos[1]<0 ||pos[2]>this.mod.getLlargada()-1 || pos[2]<0 ) {
 				String msgError="El format ha de ser: Descobrir(0)/Bandera(1) fila columna. Ex 1 2.";
 				String msgError2="La fila ha de ser un numero del 0 al " + (mod.getAmplada()-1) ;
 				String msgError3="La columna ha de ser un numero del 0 al " + (mod.getLlargada()-1) ;
@@ -94,14 +104,17 @@ public class Controlador {
 	
 	private void actualitzarMatriu(int[][] valors) {
         for (int i=0;i<valors.length;i++) {
-            int fila = valors[i][0];
-            int columna = valors[i][1];
-            int valorCelda = valors[i][2];
-            if(mat[fila][columna]!=valorCelda) {
-            	mat[fila][columna] = valorCelda;
-            	this.desc++;
+            if(valors[i].length==3) {
+            	int fila = valors[i][1];
+                int columna = valors[i][2];
+                int valorCelda = valors[i][0];
+                if(mat[fila][columna]!=valorCelda) {
+                	mat[fila][columna] = valorCelda;
+                	this.desc++;
+                }
+                
+            	
             }
-            
             
         }
 	
