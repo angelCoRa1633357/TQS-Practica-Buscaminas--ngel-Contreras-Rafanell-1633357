@@ -57,7 +57,6 @@ public class BuscaminesModel implements Model {
 		int[][] matV=TaulerV.getMat();
 		boolean[][] matDisp = TaulerD.getMartrix();
 		int[][] v = {{}};
-		System.out.print(matDisp[i][j]);
 		if(matDisp[i][j] == false) {
 			
 			TaulerD.posDescoberta(i, j);
@@ -128,7 +127,7 @@ public class BuscaminesModel implements Model {
 		if(v[0].length>0) {
 			
 			for(int k=0;k<v.length;k++) {
-				System.out.println(v[k][1]);
+
 				assert(v[k][0]>-1 && v[k][0]<9 );
 				assert(v[k][1]>=0 && this.llargada>v[k][1]);
 				assert(v[k][2]>=0 && this.amplitud>v[k][2]);

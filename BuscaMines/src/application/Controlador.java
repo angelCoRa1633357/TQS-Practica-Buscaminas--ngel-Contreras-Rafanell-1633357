@@ -33,13 +33,18 @@ public class Controlador {
             
             if(accio==0) {
             	//System.out.print(fila + " " + columna);
+            	if(this.desc==0) {
+        			this.mod.inicialitzaMatvalors(fila, columna);
+        		}
             	if(mat[fila][columna]==-3) {
                     vis.mostrarError("No pots descobrir una cel·la marcada amb una bandera.");
             	}else if(mod.isBomba(fila, columna)) {
             		vis.mostrarPerdut();
             		vis.mostrarTauler(mod.getMatVals());
+            		
             		break;
             	}else {
+            		
             		int[][] valors = mod.getValosr(fila, columna);
             		actualitzarMatriu(valors);
             		
@@ -52,7 +57,12 @@ public class Controlador {
             	}
             		
             	}else {
-            		mat[fila][columna]=-3;
+            		if(mat[fila][columna]==-3) {
+            			mat[fila][columna]=-2;
+            		}else {
+            			mat[fila][columna]=-3;
+            		}
+            		
             		vistaPlatilla();
             	}
             }
