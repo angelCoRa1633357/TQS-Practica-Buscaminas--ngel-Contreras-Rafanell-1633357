@@ -87,18 +87,22 @@ public class Controlador {
 		
 		while(true) {
 			pos = this.tec.getPosTeclat();
-			if(pos[0]>1 ||pos[0]<0||pos[1]>this.mod.getAmplada()-1 || pos[1]<0 ||pos[2]>this.mod.getLlargada()-1 || pos[2]<0 ) {
-				String msgError="El format ha de ser: Descobrir(0)/Bandera(1) fila columna. Ex 1 2.";
-				String msgError2="La fila ha de ser un numero del 0 al " + (mod.getAmplada()-1) ;
-				String msgError3="La columna ha de ser un numero del 0 al " + (mod.getLlargada()-1) ;
-				this.vis.flushNumLins(2);
-				this.vis.mostrarError(msgError);
-				this.vis.mostrarError(msgError2);
-				this.vis.mostrarError(msgError3);
-				this.vis.demanrPos();
-			}else {
-				return pos;
+			if(pos.length==3) {
+				if(pos[0]>1 ||pos[0]<0||pos[1]>this.mod.getAmplada()-1 || pos[1]<0 ||pos[2]>this.mod.getLlargada()-1 || pos[2]<0 ) {
+					String msgError="El format ha de ser: Descobrir(0)/Bandera(1) fila columna. Ex 1 2.";
+					String msgError2="La fila ha de ser un numero del 0 al " + (mod.getAmplada()-1) ;
+					String msgError3="La columna ha de ser un numero del 0 al " + (mod.getLlargada()-1) ;
+					this.vis.flushNumLins(2);
+					this.vis.mostrarError(msgError);
+					this.vis.mostrarError(msgError2);
+					this.vis.mostrarError(msgError3);
+					this.vis.demanrPos();
+				}else {
+					return pos;
+				}
+				
 			}
+			
 		}
 	}
 	
