@@ -33,7 +33,13 @@ class BuscaminesTaulerValorsTest {
 		
 		TaulerValors Tv2 = new BuscaminesTaulerValors(Rmock);
 		
-		Tv.setLlargada(1);
+		Tv2.setLlargada(1);
+		assertThrows(AssertionError.class, () -> {
+			Tv2.initMat(0, 0);//dona error, amplada i mines no setejades.
+		});
+		
+		Tv2.setLlargada(1);
+		Tv2.setAmplada(1);
 		assertThrows(AssertionError.class, () -> {
 			Tv2.initMat(0, 0);//dona error, amplada i mines no setejades.
 		});
@@ -66,6 +72,7 @@ class BuscaminesTaulerValorsTest {
 				assertEquals(Resmat[i][j],mat[i][j]);
 			}
 		}
+		Tv3.initMat(0, 0);
 		
 		
 		//i=1
@@ -289,10 +296,271 @@ class BuscaminesTaulerValorsTest {
 			Tv12.initMat(4, 4);//dona error, amplada no setejades.
 		});
 		
+		//loop testing 1 linia 44-56 (mines) tindrem una mat 3x3 max 8 mines min 1
+		//(0) no pot ser 0 les mines, (1), (2),(5) valor entre mig,(7)max-1,(8) max
+		
+		//0
+		TaulerValors  TvloopSimple = new BuscaminesTaulerValors(Rmock);
+		
+		assertThrows(AssertionError.class, () -> {
+			TvloopSimple.setAmplada(3);
+			TvloopSimple.setLlargada(3);
+			TvloopSimple.setMines(0); 
+			TvloopSimple.initMat(0, 0);
+		});
+		
+		//1
+		when(Rmock.Random(3, 3)).thenReturn(new int[] {0,1});
+		TaulerValors  TvloopSimple2 = new BuscaminesTaulerValors(Rmock);	
+		
+		TvloopSimple2.setAmplada(3);
+		TvloopSimple2.setLlargada(3);
+		TvloopSimple2.setMines(1); 
+		TvloopSimple2.initMat(0, 0);
+
+		//2
+		when(Rmock.Random(3, 3)).thenReturn(new int[] {0,1}).thenReturn(new int[] {1,0});
+		TaulerValors  TvloopSimple3 = new BuscaminesTaulerValors(Rmock);	
+		
+		TvloopSimple3.setAmplada(3);
+		TvloopSimple3.setLlargada(3);
+		TvloopSimple3.setMines(2); 
+		TvloopSimple3.initMat(0, 0);
+
+		//4
+		when(Rmock.Random(3, 3)).thenReturn(new int[] {0,1}).thenReturn(new int[] {1,0})
+		.thenReturn(new int[] {1,1}).thenReturn(new int[] {0,2});
+		TvloopSimple3 = new BuscaminesTaulerValors(Rmock);	
+		
+		TvloopSimple3.setAmplada(3);
+		TvloopSimple3.setLlargada(3);
+		TvloopSimple3.setMines(4); 
+		TvloopSimple3.initMat(0, 0);
+
+		//7
+		Rmock = mock(Random.class);
+		when(Rmock.Random(3, 3)).thenReturn(new int[] {0,1}).thenReturn(new int[] {1,0})
+		.thenReturn(new int[] {1,1}).thenReturn(new int[] {2,0}).thenReturn(new int[] {2,1})
+		.thenReturn(new int[] {0,2}).thenReturn(new int[] {1,2});;
+		TvloopSimple3 = new BuscaminesTaulerValors(Rmock);	
+		
+		TvloopSimple3.setAmplada(3);
+		TvloopSimple3.setLlargada(3);
+		TvloopSimple3.setMines(4); 
+		TvloopSimple3.initMat(0, 0);
+
+		//5
+		when(Rmock.Random(3, 3)).thenReturn(new int[] {0,1}).thenReturn(new int[] {1,0})
+		.thenReturn(new int[] {1,1}).thenReturn(new int[] {2,0}).thenReturn(new int[] {2,1})
+		.thenReturn(new int[] {0,2}).thenReturn(new int[] {1,2}).thenReturn(new int[] {2,2});
+		TvloopSimple3 = new BuscaminesTaulerValors(Rmock);	
+		
+		TvloopSimple3.setAmplada(3);
+		TvloopSimple3.setLlargada(3);
+		TvloopSimple3.setMines(8); 
+		TvloopSimple3.initMat(0, 0);
+
+		
+		
+		
+		//loop testing 2 linia 17-21, (mines) tindrem una mat 3x3 max 8 mines min 1
+		//(0) no pot ser 0 les mines, (1), (2),(5) valor entre mig,(7)max-1,(8) max
+		
+		//0
+		TaulerValors  TvloopSimple20 = new BuscaminesTaulerValors(Rmock);
+		
+		assertThrows(AssertionError.class, () -> {
+			TvloopSimple20.setAmplada(3);
+			TvloopSimple20.setLlargada(3);
+			TvloopSimple20.setMines(0); 
+			TvloopSimple20.initMat(0, 0);
+		});
+		
+		//1
+		when(Rmock.Random(3, 3)).thenReturn(new int[] {0,1});
+		TaulerValors  TvloopSimple22 = new BuscaminesTaulerValors(Rmock);	
+		
+		TvloopSimple22.setAmplada(3);
+		TvloopSimple22.setLlargada(3);
+		TvloopSimple22.setMines(1); 
+		TvloopSimple22.initMat(0, 0);
+
+		//2
+		when(Rmock.Random(3, 3)).thenReturn(new int[] {0,1}).thenReturn(new int[] {1,0});
+		TaulerValors  TvloopSimple23 = new BuscaminesTaulerValors(Rmock);	
+		
+		TvloopSimple23.setAmplada(3);
+		TvloopSimple23.setLlargada(3);
+		TvloopSimple23.setMines(2); 
+		TvloopSimple23.initMat(0, 0);
+
+		//4
+		when(Rmock.Random(3, 3)).thenReturn(new int[] {0,1}).thenReturn(new int[] {1,0})
+		.thenReturn(new int[] {1,1}).thenReturn(new int[] {0,2});
+		TvloopSimple23 = new BuscaminesTaulerValors(Rmock);	
+		
+		TvloopSimple23.setAmplada(3);
+		TvloopSimple23.setLlargada(3);
+		TvloopSimple23.setMines(4); 
+		TvloopSimple23.initMat(0, 0);
+
+		//7
+		Rmock = mock(Random.class);
+		when(Rmock.Random(3, 3)).thenReturn(new int[] {0,1}).thenReturn(new int[] {1,0})
+		.thenReturn(new int[] {1,1}).thenReturn(new int[] {2,0}).thenReturn(new int[] {2,1})
+		.thenReturn(new int[] {0,2}).thenReturn(new int[] {1,2});;
+		TvloopSimple23 = new BuscaminesTaulerValors(Rmock);	
+		
+		TvloopSimple23.setAmplada(3);
+		TvloopSimple23.setLlargada(3);
+		TvloopSimple23.setMines(4); 
+		TvloopSimple23.initMat(0, 0);
+
+		//5
+		when(Rmock.Random(3, 3)).thenReturn(new int[] {0,1}).thenReturn(new int[] {1,0})
+		.thenReturn(new int[] {1,1}).thenReturn(new int[] {2,0}).thenReturn(new int[] {2,1})
+		.thenReturn(new int[] {0,2}).thenReturn(new int[] {1,2}).thenReturn(new int[] {2,2});
+		TvloopSimple23 = new BuscaminesTaulerValors(Rmock);	
+		
+		TvloopSimple23.setAmplada(3);
+		TvloopSimple23.setLlargada(3);
+		TvloopSimple23.setMines(8); 
+		TvloopSimple23.initMat(0, 0);
+
+		
+		
+		
+
+		
+		
+		
+		
+		// loops aniuats testing linia 34-49 format (Amplada,Llargada)
+		// (1,0)el cas no es posible, (1,1)no es posible(no caben mines), (1,2), (1,5),(1, MAX_INT-1),(1,MAX_INT)
+		//(0,5)el cas no es posible, (1,5), (2,5), (5,5),(MAX_INT-1,5),(MAX_INT,5)
+		
+		//(1,0)
+		
+		TaulerValors  TvlootDoble = new BuscaminesTaulerValors(Rmock);
+		
+		assertThrows(AssertionError.class, () -> {
+			TvlootDoble.setAmplada(1);
+			TvlootDoble.setLlargada(0);
+			TvlootDoble.setMines(1); 
+			TvlootDoble.initMat(0, 0);
+		});
+		
+		//(1,1)
+		TaulerValors  TvlootDoble2 = new BuscaminesTaulerValors(Rmock);
+		TvlootDoble2.setAmplada(1);
+		TvlootDoble2.setLlargada(1);
+		 
+		assertThrows(AssertionError.class, () -> {
+			TvlootDoble2.setMines(1);
+			TvlootDoble2.initMat(0, 0);
+		});
+		
+		//(1,2)
+		when(Rmock.Random(1, 2)).thenReturn(new int[] {0,1});
+		TaulerValors  TvlootDoble3 = new BuscaminesTaulerValors(Rmock);
+		TvlootDoble3.setAmplada(1);
+		TvlootDoble3.setLlargada(2);
+		TvlootDoble3.setMines(1); 
+		TvlootDoble3.initMat(0, 0);
+
+		
+		//(1,5)
+		when(Rmock.Random(1,5)).thenReturn(new int[] {0,1});
+		TaulerValors  TvlootDoble4 = new BuscaminesTaulerValors(Rmock);
+		TvlootDoble4.setAmplada(1);
+		TvlootDoble4.setLlargada(5);
+		TvlootDoble4.setMines(1); 
+
+		TvlootDoble4.initMat(0, 0);
+
+		
+		//(1,MAX_INT-1) Dona una exepccio de VM Limit, al crear la matriu a la linia 34
+		//when(Rmock.Random(1, Integer.MAX_VALUE-1)).thenReturn(new int[] {0,1});
+		//TaulerValors  TvlootDoble5 = new BuscaminesTaulerValors(Rmock);
+		//TvlootDoble5.setAmplada(1);
+		//TvlootDoble5.setLlargada(Integer.MAX_VALUE-1);
+		//TvlootDoble5.setMines(1); 
+
+		//TvlootDoble5.initMat(0, 0);
+
+		
+		//(1,MAX_INT)Dona una exepccio de VM Limit, al crear la matriu a la linia 34
+		//when(Rmock.Random(1,Integer.MAX_VALUE)).thenReturn(new int[] {0,1});
+		//TaulerValors  TvlootDoble6 = new BuscaminesTaulerValors(Rmock);
+		//TvlootDoble6.setAmplada(1);
+		//TvlootDoble6.setLlargada(Integer.MAX_VALUE);
+		//TvlootDoble6.setMines(1); 
+
+		//TvlootDoble6.initMat(0, 0);
+
+		
+		
+		//(0,5)
+		TaulerValors  TvlootDoble7 = new BuscaminesTaulerValors(Rmock);
+
+		assertThrows(AssertionError.class, () -> {
+			TvlootDoble7.setAmplada(0);//no pot ser 0
+			TvlootDoble7.setLlargada(5);
+			TvlootDoble7.setMines(1); 
+			TvlootDoble7.initMat(0, 0);
+		});
+		
+		//(1,5)
+		when(Rmock.Random(1, 5)).thenReturn(new int[] {0,1});
+		TaulerValors  TvlootDoble8 = new BuscaminesTaulerValors(Rmock);
+		TvlootDoble8.setAmplada(1);
+		TvlootDoble8.setLlargada(5);
+		TvlootDoble8.setMines(1); 
+		TvlootDoble8.initMat(0, 0);
+		
+		
+		//(2,5)
+		when(Rmock.Random(2, 5)).thenReturn(new int[] {0,1});
+		TaulerValors  TvlootDoble9 = new BuscaminesTaulerValors(Rmock);
+		TvlootDoble9.setAmplada(1);
+		TvlootDoble9.setLlargada(5);
+		TvlootDoble9.setMines(1); 
+		TvlootDoble9.initMat(0, 0);
+
+		
+		//(5,5)
+		when(Rmock.Random(5, 5)).thenReturn(new int[] {0,1});
+		TaulerValors  TvlootDoble10 = new BuscaminesTaulerValors(Rmock);
+		TvlootDoble10.setAmplada(1);
+		TvlootDoble10.setLlargada(5);
+		TvlootDoble10.setMines(1); 
+		TvlootDoble10.initMat(0, 0);
+
+		
+		//(MAX_INT-1,5)Dona una exepccio de VM Limit, al crear la matriu a la linia 34
+		//when(Rmock.Random(Integer.MAX_VALUE-1, 5)).thenReturn(new int[] {0,1});
+		//TaulerValors  TvlootDoble11 = new BuscaminesTaulerValors(Rmock);
+		//TvlootDoble11.setAmplada(Integer.MAX_VALUE-1);
+		//TvlootDoble11.setLlargada(5);
+		//TvlootDoble11.setMines(1); 
+		//TvlootDoble11.initMat(0, 0);
+
+		
+		//(MAX_INT,5)Dona una exepccio de VM Limit, al crear la matriu a la linia 34
+		//when(Rmock.Random(Integer.MAX_VALUE, 5)).thenReturn(new int[] {0,1});
+		//TaulerValors  TvlootDoble12 = new BuscaminesTaulerValors(Rmock);
+		//TvlootDoble12.setAmplada(Integer.MAX_VALUE);
+		//TvlootDoble12.setLlargada(5);
+		//TvlootDoble12.setMines(1); 
+		//TvlootDoble12.initMat(0, 0);
+
+		
+		
+		
 	}
 
 	@Test
-	void testGetLlargada() {
+	void testGetLlargada()   {
 		Random Rmock = mock(Random.class);
 		TaulerValors Tv = new BuscaminesTaulerValors(Rmock);
 		
@@ -309,7 +577,7 @@ class BuscaminesTaulerValorsTest {
 	}
 
 	@Test
-	void testGetAmplada() {
+	void testGetAmplada()   {
 		Random Rmock = mock(Random.class);
 		TaulerValors Tv = new BuscaminesTaulerValors(Rmock);
 		
@@ -354,7 +622,7 @@ class BuscaminesTaulerValorsTest {
 	}
 
 	@Test
-	void testSetAmplada() {
+	void testSetAmplada()   {
 		// Te dos particions equivalents, x=<0 de valor invalids, i x>0 valids
 		//Els valors frontera, 0 i 1, i limits -1 i 2
 		
@@ -381,7 +649,7 @@ class BuscaminesTaulerValorsTest {
 	}
 
 	@Test
-	void testSetMines() {
+	void testSetMines()   {
 		//ha de ser mer gran que 0, i no pot ser ni igual ni mes gran que Amplada*llargadar, o s'ha d'inicialtzar les ampladis i llargades abans
 
 		assertThrows(AssertionError.class, () -> {

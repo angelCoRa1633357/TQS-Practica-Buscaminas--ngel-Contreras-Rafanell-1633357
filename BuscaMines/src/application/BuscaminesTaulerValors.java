@@ -5,11 +5,11 @@ import java.util.Arrays;
 public class BuscaminesTaulerValors implements TaulerValors {
 	Random Rand;
 	boolean matGen=false;
-	int[][] mat;
+	int[][] mat=null;
 	int Llargada=0;
 	int Amplada=0;
 	int mines=0;
-	
+
 	BuscaminesTaulerValors(Random R){
 		this.Rand=R;
 	}
@@ -23,32 +23,36 @@ public class BuscaminesTaulerValors implements TaulerValors {
 	}
 	@Override
 	public void initMat(int i, int j) {
+
 		assert(this.Llargada>0);
 		assert(this.Amplada>0);
 		assert(this.mines>0);
 		assert(i>=0 && j>=0 && i<this.Amplada && j<this.Llargada );
-		
+		//Thread.dumpStack();
 		if(!matGen) {
 			this.matGen=true;
+			
 			this.mat=new int[this.Amplada][this.Llargada];
 			for(int t=0;t<this.Amplada;t++) {
 				for(int y=0;y<this.Llargada;y++) {
 					this.mat[t][y]=0;
 				}
 			}
+			
 			int[][] posMins = new int[this.mines][2];
 			int k=0;
 
 			while(k<this.mines) {//distribuim les mines
-				
+
 				int[] pos=this.Rand.Random(this.Amplada, this.Llargada);
 
 				if(!isPosInArray(posMins,pos) && ((pos[0]!=i) || (pos[1]!=j))) {
 					posMins[k][0]=pos[0];
 					posMins[k][1]=pos[1];
-			
 					this.mat[pos[0]][pos[1]]=-1;
+					
 					k++;
+					
 				}
 				
 			}
@@ -72,6 +76,7 @@ public class BuscaminesTaulerValors implements TaulerValors {
 			}
 			
 		}
+
 
 	}
 

@@ -1,6 +1,7 @@
 package application;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
@@ -83,6 +84,103 @@ class BuscaminesTaulerDispTest {
 		assertThrows(AssertionError.class, () -> {
 			Td4.getMartrix();			   
 		});
+		
+		// loops aniuats testing linia 16-20 format (Amplada,Llargada)
+		// (1,0)el cas no es posible, (1,1), (1,2), (1,5),(1, MAX_INT-1),(1,MAX_INT)
+		//(0,5)el cas no es posible, (1,5), (2,5), (5,5),(MAX_INT-1,5),(MAX_INT,5)
+		
+		//(1,0)
+		
+		TaulerDisponibilitat TdloopDoble = new BuscaminesTaulerDisp();
+		
+		assertThrows(AssertionError.class, () -> {
+			TdloopDoble.setAmplada(1);
+			TdloopDoble.setLlargada(0);
+			TdloopDoble.getMartrix();
+		});
+		
+		//(1,1)
+		TaulerDisponibilitat TdloopDoble2 = new BuscaminesTaulerDisp();
+		TdloopDoble2.setAmplada(1);
+		TdloopDoble2.setLlargada(1);
+		TdloopDoble2.getMartrix();
+	
+		
+		//(1,2)
+		
+		TaulerDisponibilitat TdloopDoble3 = new BuscaminesTaulerDisp();
+		TdloopDoble3.setAmplada(1);
+		TdloopDoble3.setLlargada(2);
+		TdloopDoble3.getMartrix();
+
+		
+		//(1,5)
+		TaulerDisponibilitat TdloopDoble4 = new BuscaminesTaulerDisp();
+		TdloopDoble4.setAmplada(1);
+		TdloopDoble4.setLlargada(5);
+		TdloopDoble4.getMartrix();
+
+		
+		//(1,MAX_INT-1) Dona una exepccio de VM Limit, al crear la matriu a la linia 34
+		//TaulerDisponibilitat TdloopDoble5 = new BuscaminesTaulerDisp();
+		//TdloopDoble5.setAmplada(1);
+		//TdloopDoble5.setLlargada(Integer.MAX_VALUE-1);
+		//TdloopDoble5.getMartrix();
+
+		
+		//(1,MAX_INT)Dona una exepccio de VM Limit, al crear la matriu a la linia 34
+		//TaulerDisponibilitat TdloopDoble6 = new BuscaminesTaulerDisp();
+		//TdloopDoble6.setAmplada(1);
+		//TdloopDoble6.setLlargada(Integer.MAX_VALUE);
+
+		//TdloopDoble6.getMartrix();
+
+		
+		
+		//(0,5)
+		TaulerDisponibilitat TdloopDoble7 = new BuscaminesTaulerDisp();
+
+		assertThrows(AssertionError.class, () -> {
+			TdloopDoble7.setAmplada(0);//no pot ser 0
+			TdloopDoble7.setLlargada(5);
+			TdloopDoble7.getMartrix();
+		});
+		
+		//(1,5)
+		TaulerDisponibilitat TdloopDoble8 = new BuscaminesTaulerDisp();
+		TdloopDoble8.setAmplada(1);
+		TdloopDoble8.setLlargada(5);
+		TdloopDoble8.getMartrix();
+		
+		
+		//(2,5)
+		TaulerDisponibilitat TdloopDoble9 = new BuscaminesTaulerDisp();
+		TdloopDoble9.setAmplada(1);
+		TdloopDoble9.setLlargada(5);
+		TdloopDoble9.getMartrix();
+
+		
+		//(5,5)
+
+		TaulerDisponibilitat TdloopDoble10 = new BuscaminesTaulerDisp();
+		TdloopDoble10.setAmplada(1);
+		TdloopDoble10.setLlargada(5);
+		TdloopDoble10.getMartrix();
+
+		
+		//(MAX_INT-1,5)Dona una exepccio de VM Limit, al crear la matriu a la linia 34
+		//TaulerDisponibilitat TdloopDoble11 = new BuscaminesTaulerDisp();
+		//TdloopDoble11.setAmplada(Integer.MAX_VALUE-1);
+		//TdloopDoble11.setLlargada(5);
+
+		//TdloopDoble11.getMartrix();
+
+		
+		//(MAX_INT,5)Dona una exepccio de VM Limit, al crear la matriu a la linia 34
+		//TaulerDisponibilitat TdloopDoble12 = new BuscaminesTaulerDisp();
+		//TdloopDoble12.setAmplada(Integer.MAX_VALUE);
+		//TdloopDoble12.setLlargada(5);
+		//TdloopDoble12.getMartrix();
 	}
 
 	@Test

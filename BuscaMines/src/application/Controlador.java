@@ -27,6 +27,12 @@ public class Controlador {
 		
 		while(true) {
 			int[] pos=getPos();
+			
+	        assert pos.length == 3;
+	        assert pos[0] == 0 || pos[0] == 1;
+	        assert pos[1] >= 0 && pos[1] < mod.getAmplada();
+	        assert pos[2] >= 0 && pos[2] < mod.getLlargada();
+	        
             int accio = pos[0]; 
             int fila = pos[1];
             int columna = pos[2];
@@ -117,13 +123,17 @@ public class Controlador {
 	}
 	
 	private void actualitzarMatriu(int[][] valors) {
+		
         for (int i=0;i<valors.length;i++) {
             if(valors[i].length==3) {
             	int fila = valors[i][1];
                 int columna = valors[i][2];
                 int valorCelda = valors[i][0];
-                if(mat[fila][columna]!=valorCelda) {
-                	mat[fila][columna] = valorCelda;
+                
+                assert fila >= 0 && fila < this.mat.length ;
+                assert columna >= 0 && columna < this.mat[0].length;
+                if(this.mat[fila][columna]!=valorCelda) {
+                	this.mat[fila][columna] = valorCelda;
                 	this.desc++;
                 }
                 

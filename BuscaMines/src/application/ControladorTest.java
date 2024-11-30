@@ -90,6 +90,8 @@ class ControladorTest {
 		
 		c.jugar();
 		
+		
+
 
         
         

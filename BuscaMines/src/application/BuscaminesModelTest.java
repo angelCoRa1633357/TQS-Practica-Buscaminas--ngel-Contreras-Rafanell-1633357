@@ -1,6 +1,8 @@
 package application;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
@@ -400,6 +402,24 @@ class BuscaminesModelTest {
 		assertEquals(res,true);
 		
 		
+	}
+	
+	@Test
+	void TestgetMatVals() {
+		TaulerDisponibilitat MockDips = mock(TaulerDisponibilitat.class);
+		
+		TaulerValors MockVals =  mock(TaulerValors.class);
+		BuscaminesModel m = new BuscaminesModel(2,2,1,MockVals,MockDips);
+		
+		m.inicialitzaMatvalors(0, 0);
+		when(MockVals.getMat()).thenReturn(new int[][] {{1,1},{1,-1}});
+		int[][] res=new int[][] {{1,1},{1,-1}};
+		int[][] mar=m.getMatVals();
+		for(int i=0;i<mar.length;i++) {
+			for(int j=0;j<mar[i].length;j++) {
+				assertEquals(mar[i][j],res[i][j]);
+			}
+		}
 	}
 
 }
