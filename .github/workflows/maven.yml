@@ -16,18 +16,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Change directory to BuscaMines
-      run: cd BuscaMines  # Cambiar al subdirectorio donde está el pom.xml
-      
-    - name: List files in current directory
-      run: ls -la  # Esto es útil para depurar si el pom.xml está presente
-      
-    - name: Set up JDK 17
+    - name: Set up JDK 22
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
-        java-version: '17'
+        java-version: '22'  # Cambiar a Java 22
 
-    - name: Run tests
-      run: mvn test  # Ahora se ejecuta Maven dentro de BuscaMines
-      working-directory: ./BuscaMines
+    - name: Run tests in BuscaMines directory
+      run: mvn test
+      working-directory: ./BuscaMines  # Establecer el directorio de trabajo
