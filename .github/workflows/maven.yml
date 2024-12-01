@@ -29,6 +29,5 @@ jobs:
         java-version: '17'
 
     - name: Run tests
-      run: |
-          working-directory: ./BuscaMines
-          mvn test  # Ahora se ejecuta Maven dentro de BuscaMines
+      run: mvn test  # Ahora se ejecuta Maven dentro de BuscaMines
+      working-directory: ./BuscaMines
