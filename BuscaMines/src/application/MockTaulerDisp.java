@@ -1,5 +1,5 @@
 package application;
-//Comentari per provar testss
+//Comentari per provar tests
 public class MockTaulerDisp implements TaulerDisponibilitat {
 	private int numAcces = 0;
 	private int count =0;
