@@ -1,7 +1,7 @@
 package application;
 
 public class BuscaminesTaulerDisp implements TaulerDisponibilitat {
-	boolean matGen=false;
+	boolean matGen=false; 
 	boolean[][] mat;
 	int Llargada=0;
 	int Amplada=0;

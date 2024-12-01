@@ -127,7 +127,7 @@ public class BuscaminesModel implements Model {
 		if(v[0].length>0) {
 			
 			for(int k=0;k<v.length;k++) {
-
+				//DbyC postCondicions
 				assert(v[k][0]>-1 && v[k][0]<9 );
 				assert(v[k][1]>=0 && this.llargada>v[k][1]);
 				assert(v[k][2]>=0 && this.amplitud>v[k][2]);
@@ -136,7 +136,7 @@ public class BuscaminesModel implements Model {
 
 		}
 		
-		return v; //valor temporal
+		return v;
 	}
 	public boolean isBomba(int i, int j) {
 		invariants();

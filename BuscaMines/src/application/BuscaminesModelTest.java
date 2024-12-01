@@ -157,6 +157,8 @@ class BuscaminesModelTest {
 		BuscaminesModel m = new BuscaminesModel(4,3,2,MockVals,MockDips);
 		//no hi ha asserts ja que son de per contracte.
 		// la i no pot ser mes gran que l'amplada ni inferior a 0, i la j no pot ser mes gran que la llargada ni inferior a 0
+		// 3 particions equivalents per a la i: i<0 (invalids), 0<i<amplada (valids), i>amplada (invalids) 
+		// 3 particions equivalents per a la j: j<0 (invalids), 0<j<llargada (valids), j>llargada (invalids) 
 		//  i valor frontera -1,0 amplada-1 i amplada , valors limit -2, 1, amplada-2 i amplada+1
 		// j valor frontera -1, 0, llargada-1 i llargada, valor limit -2,1, llargada-2 i llargada+1
 		
@@ -228,6 +230,8 @@ class BuscaminesModelTest {
 		//test per veure si el DoC va bé
 		//ha de ser una pocisio no clicada(la matriu de disponibitat aquela pos fica 0)(retorna buit) i ha de estar en una pocisio correcta(si no s'executa un asset)
 		//mirem el limits i frontera del parametre "i", i "j"
+		// 3 particions equivalents per a la i: i<0 (invalids), 0<i<amplada (valids), i>amplada (invalids) 
+		// 3 particions equivalents per a la j: j<0 (invalids), 0<j<llargada (valids), j>llargada (invalids) 
 		// la i no pot ser mes gran que l'amplada ni inferior a 0, i la j no pot ser mes gran que la llargada ni inferior a 0
 		//  i valor frontera -1,0 amplada-1 i amplada , valors limit -2, 1, amplada-2 i amplada+1
 		// j valor frontera -1, 0, llargada-1 i llargada, valor limit -2,1, llargada-2 i llargada+1
@@ -288,23 +292,14 @@ class BuscaminesModelTest {
 		//  1  1 2  1
 		//  2 -1 1  1
 		// -1  2 1 -1
-		System.out.println("sssssss");
+
 		v = m2.getValosr(0,0);
 		int[][] res1= {{0,0,0},{0,0,1},{1,1,0},{1,1,1},{1,0,2},{2,1,2}};
 		
-		System.out.println("sssssss");
-		System.out.println(v.length);
-		for(int i=0;i<v.length;i++) {
-			for(int j=0;j<3;j++) {
-				System.out.print(v[i][j]);
-				
-			}
-			System.out.println();
-		}
-		
+
 		for(int i=0;i<res1.length;i++) {
 			for(int j=0;j<res1[i].length;j++) {
-				System.out.print(v[i][j]);
+				//System.out.print(v[i][j]);
 				assertEquals(v[i][j],res1[i][j]);
 			}
 		}
@@ -333,7 +328,7 @@ class BuscaminesModelTest {
 		//  1  1 3 -1
 		//  2 -1 2  1
 		// -1  2 1  0
-		System.out.println("sssssss");
+		//System.out.println("sssssss");
 		v = m2.getValosr(3,3);
 		
 		res1= new int[][] {{0,3,3},{2,2,2},{1,2,3},{1,3,2}};//com agafa una poscio ja visitada ha de retornar un buit
@@ -344,7 +339,7 @@ class BuscaminesModelTest {
 		}
 		
 
-		System.out.println("fsfdsdfsfsfsddddddddddddddddddddddddddddddddddddddddddddd: ");
+		//System.out.println("fsfdsdfsfsfsddddddddddddddddddddddddddddddddddddddddddddd: ");
 	}
 
 	@Test
@@ -356,13 +351,17 @@ class BuscaminesModelTest {
 		//test per veure si el DoC va bé
 		//ha de ser una pocisio no clicada(la matriu de disponibitat aquela pos fica 0)(retorna buit) i ha de estar en una pocisio correcta(si no s'executa un asset)
 		//mirem el limits i frontera del parametre "i", i "j"
+		// 3 particions equivalents per a la i: i<0 (invalids), 0<i<amplada (valids), i>amplada (invalids) 
+		// 3 particions equivalents per a la j: j<0 (invalids), 0<j<llargada (valids), j>llargada (invalids) 
 		// la i no pot ser mes gran que l'amplada ni inferior a 0, i la j no pot ser mes gran que la llargada ni inferior a 0
 		//  i valor frontera -1,0 amplada-1 i amplada , valors limit -2, 1, amplada-2 i amplada+1
 		// j valor frontera -1, 0, llargada-1 i llargada, valor limit -2,1, llargada-2 i llargada+1
 		res = m.isBomba(0, 0);
 		//limits
+
 		assertThrows(AssertionError.class, () -> {
-			m.getValosr(-1, 0);//falla
+			
+			m.isBomba(-1, 0);//falla
 		});
 		res =m.isBomba(0, 0);//dona bé
 		res =m.isBomba(3, 0);//dona bé
@@ -389,12 +388,12 @@ class BuscaminesModelTest {
 		res =m.isBomba(1, 0);//dona bé
 		res =m.isBomba(2, 0);//dona bé
 		assertThrows(AssertionError.class, () -> {
-			m.getValosr(5, 0);//falla
+			m.isBomba(5, 0);//falla
 		});
 		
 		
 		assertThrows(AssertionError.class, () -> {
-			m.getValosr(0,-2);//falla
+			m.isBomba(0,-2);//falla
 		});
 		res =m.isBomba(0, 1);//dona bé
 		//m.getValosr(0,1);//igual que l'anterior
