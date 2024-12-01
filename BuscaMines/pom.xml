@@ -39,6 +39,7 @@
         <version>3.8.1</version>
         <configuration>
           <release>22</release>
+          <testSourceDirectory>src/application</testSourceDirectory> <!-- Configura el directorio donde están los tests -->
         </configuration>
       </plugin>
     </plugins>
