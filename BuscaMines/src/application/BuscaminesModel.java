@@ -64,7 +64,7 @@ public class BuscaminesModel implements Model {
 			ArrayList<int[]> arrayValors = new ArrayList<>();
 
 			arrayValors.add(new int[] {matV[i][j],i,j});
-			
+
 			if(matV[i][j]==0) {//nomes farem la busqueda d'altres pocisions, si la inicial es 0
 				
 				arrayBusca.add(new int[] {i,j});
@@ -84,7 +84,7 @@ public class BuscaminesModel implements Model {
 						int auxPosi = posi + k;
 						int auxPosj = posj + l;
 						
-						if((auxPosi>=0 && this.llargada>auxPosi) && (auxPosj>=0 && this.amplitud>auxPosj)) {
+						if(auxPosi>=0 && this.llargada>auxPosi && auxPosj>=0 && this.amplitud>auxPosj) {
 							
 							int val = matV[auxPosi][auxPosj];
 							int[] objectiu = new int[] {val,auxPosi,auxPosj};

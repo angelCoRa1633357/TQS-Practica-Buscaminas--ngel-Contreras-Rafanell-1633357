@@ -12,6 +12,9 @@ public class Controlador {
 		this.mod=m;
 		this.vis=v;
 		this.tec=t;
+		assert(m.getAmplada()>0);
+		assert(m.getLlargada()>0);
+		assert(m.getNumMines()<m.getAmplada()*m.getLlargada());
 		this.mat=new int[m.getAmplada()][m.getLlargada()];
 		for(int i=0;i<m.getAmplada();i++) {
 			for(int j=0;j<m.getLlargada();j++) {
@@ -28,10 +31,6 @@ public class Controlador {
 		while(true) {
 			int[] pos=getPos();
 			
-	        assert pos.length == 3;
-	        assert pos[0] == 0 || pos[0] == 1;
-	        assert pos[1] >= 0 && pos[1] < mod.getAmplada();
-	        assert pos[2] >= 0 && pos[2] < mod.getLlargada();
 	        
             int accio = pos[0]; 
             int fila = pos[1];

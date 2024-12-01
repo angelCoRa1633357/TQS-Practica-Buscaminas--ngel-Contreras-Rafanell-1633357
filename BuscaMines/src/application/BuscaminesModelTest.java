@@ -318,7 +318,33 @@ class BuscaminesModelTest {
 			}
 		}
 
+
+		v = m2.getValosr(2,3); //Afegit per fer decision coberage
+		res1= new int[][] {{1,2,3}};//com agafa una poscio ja visitada ha de retornar un buit
+		for(int i=0;i<res1.length;i++) {
+			for(int j=0;j<res1[i].length;j++) {
+				assertEquals(v[i][j],res1[i][j]);
+			}
+		}
 		
+		BuscaminesModel m3 = new BuscaminesModel(4,4,2,MockVals,MockDips);// aixi tenim condition coberage
+		//matriu valors
+		//  0  0 2 -1
+		//  1  1 3 -1
+		//  2 -1 2  1
+		// -1  2 1  0
+		System.out.println("sssssss");
+		v = m2.getValosr(3,3);
+		
+		res1= new int[][] {{0,3,3},{2,2,2},{1,2,3},{1,3,2}};//com agafa una poscio ja visitada ha de retornar un buit
+		for(int i=0;i<res1.length;i++) {
+			for(int j=0;j<res1[i].length;j++) {
+				assertEquals(v[i][j],res1[i][j]);
+			}
+		}
+		
+
+		System.out.println("fsfdsdfsfsfsddddddddddddddddddddddddddddddddddddddddddddd: ");
 	}
 
 	@Test

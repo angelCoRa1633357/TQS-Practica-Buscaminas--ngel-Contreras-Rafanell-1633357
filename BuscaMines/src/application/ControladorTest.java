@@ -13,13 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 class ControladorTest {
-	void compararMatrius(int[][] mat1, int[][] mat2) {
-		for(int i=0;i<mat1.length;i++) {
-			for(int j=0;j<mat1[0].length;j++) {
-				assertEquals(mat1[i][j],mat2[i][j]);
-			}
-		}
-	}
+	
 
 	@Test
 	void testJugar() {
@@ -33,7 +27,10 @@ class ControladorTest {
 		when(mockMod.getAmplada()).thenReturn(4);
 		when(mockMod.getNumMines()).thenReturn(2);
 		when(mockTec.getPosTeclat()).thenReturn(new int[] {0,2,2}).thenReturn(new int[] {0,2,2}).thenReturn(new int[] {0,0,3})
-		.thenReturn(new int[] {0,-1,0}).thenReturn(new int[] {0,4,4}).thenReturn(new int[] {0,2,0}).thenReturn(new int[] {0,0,0})
+		.thenReturn(new int[] {0,-1,0}).thenReturn(new int[] {0,4,0}).thenReturn(new int[] {2,0,4,4})//erros i condition/decision coberage
+		.thenReturn(new int[] {0,0,-1}).thenReturn(new int[] {0,0,4}).thenReturn(new int[] {-1,3,3})//erros i condition/decision coberage
+		.thenReturn(new int[] {4,0,0})//erros i condition/decision coberage
+		.thenReturn(new int[] {0,2,0}).thenReturn(new int[] {0,0,0})
 		.thenReturn(new int[] {0,3,3});
 		when(mockMod.isBomba(2, 2)).thenReturn(false).thenReturn(false).thenReturn(false).thenReturn(false)
 		.thenReturn(false).thenReturn(false).thenReturn(false).thenReturn(false);
@@ -89,6 +86,42 @@ class ControladorTest {
 		c = new Controlador(mockMod, mockVist, mockTec);
 		
 		c.jugar();
+		
+		
+
+		assertThrows(AssertionError.class, () -> {//fer saltar asert controlador
+			Teclat mockTec2 = mock(Teclat.class);
+			Vista mockVist2 = mock(Vista.class);
+			Model mockMod2 = mock(Model.class);
+			when(mockMod2.getAmplada()).thenReturn(2);		
+			when(mockMod2.getLlargada()).thenReturn(-1);
+			Controlador c2 = new Controlador(mockMod2, mockVist2, mockTec2);
+		});
+		
+
+		assertThrows(AssertionError.class, () -> {//fer saltar asert controlador
+			Teclat mockTec3 = mock(Teclat.class);
+			Vista mockVist3 = mock(Vista.class);
+			Model mockMod3 = mock(Model.class);
+					
+			when(mockMod3.getAmplada()).thenReturn(-1);
+			Controlador c3 = new Controlador(mockMod3, mockVist3, mockTec3);
+		});
+		
+		
+		assertThrows(AssertionError.class, () -> {//fer saltar asert controlador
+			Teclat mockTec4 = mock(Teclat.class);
+			Vista mockVist4 = mock(Vista.class);
+			Model mockMod4 = mock(Model.class);
+					
+			when(mockMod4.getLlargada()).thenReturn(2);
+			when(mockMod4.getAmplada()).thenReturn(2);
+			when(mockMod4.getNumMines()).thenReturn(4);
+			Controlador c4 = new Controlador(mockMod4, mockVist4, mockTec4);
+		});
+		
+		
+
 		
 		
 
