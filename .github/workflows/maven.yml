@@ -1,6 +1,9 @@
 name: Run Tests
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -17,18 +20,8 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
-        java-version: '22'
+        java-version: '22'  # Cambiar a Java 22
 
-    - name: Cache Maven packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-
-    - name: Install dependencies
-      run: mvn install -DskipTests
-
-    - name: Run tests
+    - name: Run tests in BuscaMines directory
       run: mvn test
+      working-directory: ./BuscaMines  # Establecer el directorio de trabajo
