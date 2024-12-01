@@ -18,7 +18,10 @@ jobs:
 
     - name: Change directory to BuscaMines
       run: cd BuscaMines  # Cambiar al subdirectorio donde está el pom.xml
-
+      
+    - name: List files in current directory
+      run: ls -la  # Esto es útil para depurar si el pom.xml está presente
+      
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
