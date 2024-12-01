@@ -22,6 +22,9 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
+    - name: List files in current directory
+      run: ls -la  # Esto es útil para depurar si el pom.xml está presente
+
     - name: Run tests
       run: mvn test
 
